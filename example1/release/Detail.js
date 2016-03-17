@@ -1,0 +1,1 @@
+webpackJsonp([3],[function(e,t,n){"use strict";n(5);var o=n(2),c=n(4),r=n(3);c.start(),r.render(document.getElementById("headerWrap")),r.setTitle("detail"),setTimeout(function(){c.end(),c.subloading(document.getElementById("contentWrap"),500),setTimeout(function(){o("#contentWrap").text("content here.")},3e3)},1e3)}]);
