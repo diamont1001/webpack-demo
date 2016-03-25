@@ -10,6 +10,10 @@ var loading = require('../loading/loading'),
 // loading
 loading.start();
 
+if(__DEV__) {
+    console.log('run in dev.');
+}
+
 // 异步加载
 require.ensure([], function() {
     var listItem = require('./list-item/list-item');

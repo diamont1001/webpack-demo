@@ -20,6 +20,12 @@ module.exports = {
         commonsPlugin,
         new ExtractTextPlugin('[name].css', {allChunks: true}), // 单独打包CSS
 
+        // 全局变量
+        new webpack.DefinePlugin({
+            //__DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'false')) // 通过环境变量设置
+            __DEV__: 'false' // 开发调试时把它改为true
+        }),
+
         // HTML文件编译，自动引用JS/CSS
         new HtmlWebpackPlugin({
             filename: 'views/list.html', // 输出文件名，相对路径output.path
