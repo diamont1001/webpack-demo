@@ -14,7 +14,7 @@ module.exports = {
         //publicPath: 'http://xxx.com/webpack-demo/', // This is used to generate URLs to e.g. images
         publicPath: '../', // This is used to generate URLs to e.g. images
         filename: '[name].js',
-        chunkFilename: "[id].chunk.js"
+        chunkFilename: "[id].chunk.[hash:8].js"
     },
     plugins: [
         commonsPlugin,
@@ -23,7 +23,8 @@ module.exports = {
         // 全局变量
         new webpack.DefinePlugin({
             //__DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'false')) // 通过环境变量设置
-            __DEV__: 'false' // 开发调试时把它改为true
+            __DEV__: JSON.stringify(JSON.parse('false')), // 开发调试时把它改为true
+            __MASK_WECHAT__: JSON.stringify('http://a.img.pp.cn/upload_files/2015/11/18/common/activity/mask/img_browser_download.png') // 微信环境下蒙层图片
         }),
 
         // HTML文件编译，自动引用JS/CSS
@@ -41,7 +42,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/, loader: 'babel-loader', // ES6
-                exclude: /(node_modules|libs|ppweb\\libs\\webpack)/
+                exclude: /(node_modules|libs|ppweb\\libs\\webpack|ppweb\/libs\/webpack)/
             },
             // CSS,LESS打包进JS
             //{ test: /\.css$/, loader: 'style-loader!css-loader' },
