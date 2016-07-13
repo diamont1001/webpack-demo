@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack -w",
+    "prod": "webpack -p"
   },
-  "author": "",
+  "author": "diamont1001",
   "license": "MIT",
   "dependencies": {
     "babel-core": "^5.8.24",
