@@ -6,42 +6,45 @@ var HtmlWebpackPlugin = require('html-webpack-plugin'); // Html文件处理
 
 module.exports = {
     entry: {
-        List: './src/modules/app/list.js',
-        Detail: './src/modules/app/detail.js'
+        List: './src/modules/app/list/list.js',
+        Detail: './src/modules/app/detail/detail.js'
     },
     output: {
         path: './release', // This is where images & js will go
         //publicPath: 'http://xxx.com/webpack-demo/', // This is used to generate URLs to e.g. images
         publicPath: '../', // This is used to generate URLs to e.g. images
         filename: '[name].js',
-        chunkFilename: "[id].chunk.js"
+        chunkFilename: "[id].chunk.js?[hash:8]"
     },
     plugins: [
         commonsPlugin,
         new ExtractTextPlugin('[name].css', {allChunks: true}), // 单独打包CSS
 
-        // 全局变量
+        // 全局变量，一定要用JSON.stringify()包起来
         new webpack.DefinePlugin({
-            //__DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'false')) // 通过环境变量设置
-            __DEV__: 'false' // 开发调试时把它改为true
+          // __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false')), //通过环境变量设置
+          __DEV__: JSON.stringify(JSON.parse('false')), // 开发调试时把它改为true
+          __MASK_WECHAT__: JSON.stringify('http://a.img.pp.cn/upload_files/2015/11/18/common/activity/mask/img_browser_download.png') // 微信环境下蒙层图片
         }),
 
-        // HTML文件编译，自动引用JS/CSS
-        new HtmlWebpackPlugin({
-            filename: 'views/list.html', // 输出文件名，相对路径output.path
-            template: 'src/views/list.html', // HTML模板，相对配置文件目录
-            chunks: ['common', 'List'], // 只包含指定的文件（打包后输出的JS/CSS）,不指定的话，它会包含生成的所有js和css文件
-            //excludeChunks: ['dev-helper'], // 排除指定的文件（打包后输出的JS/CSS）
-            hash: true
-        }),
-        new HtmlWebpackPlugin({filename: 'views/detail.html', template: 'src/views/detail.html', chunks: ['common', 'Detail'], hash: true})
+        /**
+         * HTML文件编译，自动引用JS/CSS
+         * 
+         * filename - 输出文件名，相对路径output.path
+         * template - HTML模板，相对配置文件目录
+         * chunks - 只包含指定的文件（打包后输出的JS/CSS）,不指定的话，它会包含生成的所有js和css文件
+         * excludeChunks - 排除指定的文件（打包后输出的JS/CSS），比如：excludeChunks: ['dev-helper']
+         * hash
+         */
+        new HtmlWebpackPlugin({filename: 'views/list.html', template: 'src/modules/app/list/list.html', chunks: ['common', 'List'], hash: true}),
+        new HtmlWebpackPlugin({filename: 'views/detail.html', template: 'src/modules/app/detail/detail.html', chunks: ['common', 'Detail'], hash: true})
     ],
 
     module: {
         loaders: [
             {
                 test: /\.js$/, loader: 'babel-loader', // ES6
-                exclude: /(node_modules|libs|ppweb\\libs\\webpack)/
+                exclude: /(node_modules|libs)/
             },
             // CSS,LESS打包进JS
             //{ test: /\.css$/, loader: 'style-loader!css-loader' },
@@ -62,10 +65,12 @@ module.exports = {
         ]
     },
     resolve: {
+        // css的@import想要使用路径，需要在前端加~，比如 @import '~base2base/base.less'
         alias: {
             'lib0': '../../../libs', // 从module调用工程上公共lib库路径简写
             'lib1': '../../../../libs', // 从module的子文件夹调用工程上公共lib库路径简写
-            'lib2': '../../../../../libs' // 从module的两层子文件夹调用工程上的公共lib库路径简写
+            'lib2': '../../../../../libs', // 从module的两层子文件夹调用工程上的公共lib库路径简写
+            'base2base': '../../../../../libs/base/' // 从extend/base中引用libs/base库路径
         },
         // 现在可以写 require('file') 代替 require('file.coffee')
         extensions: ['', '.js', '.json', '.coffee']

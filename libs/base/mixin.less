@@ -1,0 +1,198 @@
+@charset "utf-8";
+/**
+ * mixin.less
+ * 常用的LESS类库
+ * Created by Chenjr on 2016/5/7.
+ */
+
+ /* 文字排版 */
+.f12(){font-size:12px}
+.f13(){font-size:13px}
+.f14(){font-size:14px}
+.f16(){font-size:16px}
+.f20(){font-size:20px}
+.fb(){font-weight:700}
+.fn(){font-weight:400}
+.fi(){font-style:italic}
+.t2(){text-indent:2em}
+.unl(){text-decoration:underline}
+.no_unl(){text-decoration:none}
+
+/* 定位 */
+.tl(){text-align:left}
+.tc(){text-align:center}
+.tr(){text-align:right}
+.bc(){margin-left:auto;margin-right:auto}
+.fl(){float:left;display:inline}
+.fr(){float:right;display:inline}
+.cb(){clear:both;height:0;line-height:0;font-size:0}
+.cl(){clear:left}
+.cr(){clear:right}
+.clearfix:after {content:'';display:block;height:0;clear:both;visibility:hidden}
+.clearfix(){*height:1%}
+.vm(){vertical-align:middle}
+.pr(){position:relative}
+.pa(){position:absolute}
+.abs-right(){position:absolute;right:0}
+.zoom(){zoom:1}
+.hidden(){visibility:hidden}
+.none(){display:none}
+.block(){display:block}
+.iblock(){display:inline-block}
+
+/* 长度高度 */
+.w(){width:100%}
+.h(){height:100%}
+
+/* 边距 */
+.m10(){margin:10px}
+.m15(){margin:15px}
+.m30(){margin:30px}
+.mt5(){margin-top:5px}
+.mt0(){margin-top:0}
+.mt10(){margin-top:10px}
+.mt15(){margin-top:15px}
+.mt20(){margin-top:20px}
+.mt30(){margin-top:30px}
+.mb5(){margin-bottom:5px}
+.mb10(){margin-bottom:10px}
+.mb15(){margin-bottom:15px}
+.mb20(){margin-bottom:20px}
+.mb30(){margin-bottom:30px}
+.ml5(){margin-left:5px}
+.ml10(){margin-left:10px}
+.ml15(){margin-left:15px}
+.ml20(){margin-left:20px}
+.ml30(){margin-left:30px}
+.mr5(){margin-right:5px}
+.mr10(){margin-right:10px}
+.mr15(){margin-right:15px}
+.mr20(){margin-right:20px}
+.mr30(){margin-right:30px}
+.p10(){padding:10px}
+.p15(){padding:15px}
+.p30(){padding:30px}
+.pt5(){padding-top:5px}
+.pt10(){padding-top:10px}
+.pt15(){padding-top:15px}
+.pt20(){padding-top:20px}
+.pt30(){padding-top:30px}
+.pb5(){padding-bottom:5px}
+.pb10(){padding-bottom:10px}
+.pb15(){padding-bottom:15px}
+.pb20(){padding-bottom:20px}
+.pb30(){padding-bottom:30px}
+.pl5(){padding-left:5px}
+.pl10(){padding-left:10px}
+.pl15(){padding-left:15px}
+.pl20(){padding-left:20px}
+.pl30(){padding-left:30px}
+.pr5(){padding-right:5px}
+.pr10(){padding-right:10px}
+.pr15(){padding-right:15px}
+.pr20(){padding-right:20px}
+.pr30(){padding-right:30px}
+
+
+/* 单行显示点点点 */
+.dot() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* 多行显示点点点 */
+.dots(@col) {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: @col;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+}
+
+/* 去掉点击后出现的蓝色背景 */
+.tapNone() {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.border-box() {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/***** absolute *****/
+/* 水平居中 */
+.horizontal-center() {
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+}
+
+/* 垂直居中 */
+.center() {
+    .horizontal-center();
+    top: 0;
+    bottom: 0;
+}
+
+/* 垂直居中 fix定位写法*/
+.center-fix() {
+    top:50%;
+    left:50%;
+    -webkit-transform:translate3d(-50%,-50%,0);
+    transform:translate3d(-50%,-50%);
+    position: fixed;
+}
+
+/* 圆角 */
+.border-radius(@n) {
+	-webkit-border-top-left-radius: @n;
+    -webkit-border-top-right-radius: @n;
+    -webkit-border-bottom-right-radius: @n;
+    -webkit-border-bottom-left-radius: @n;
+    -webkit-border-radius: @n;
+	-moz-border-radius: @n;
+	-ms-border-radius: @n;
+	-o-border-radius: @n;
+    border-top-left-radius: @n;
+    border-top-right-radius: @n;
+    border-bottom-right-radius: @n;
+    border-bottom-left-radius: @n;
+    border-radius: @n;
+}
+
+/* 旋转 */
+.rotate(@n) {
+	transform: rotate(@n);
+	-webkit-transform: rotate(@n);
+	-ms-transform: rotate(@n);
+	-moz-transform: rotate(@n);
+	-o-transform: rotate(@n);
+}
+
+.animation-value(@name, @duration, @timing, @delay: 0s, @count: 1, @direction: normal) {
+	-webkit-animation-name: @name;
+	-webkit-animation-duration: @duration;
+	-webkit-animation-timing-function: @timing;
+	-webkit-animation-delay: @delay;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-iteration-count: @count;
+	-webkit-animation-direction: @direction;
+}
+
+.absolute-class(@width: initial, @height: initial, @top: initial, @left: initial, @right: initial, @bottom: initial) {
+	width: @width;
+	height: @height;
+	position: absolute;
+	top: @top;
+	left: @left;
+	right: @right;
+	bottom: @bottom;
+}
