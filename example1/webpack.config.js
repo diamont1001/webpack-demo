@@ -44,7 +44,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/, loader: 'babel-loader', // ES6
-                exclude: /(node_modules|libs)/
+                exclude: /(node_modules|libs|ppweb\\libs\\webpack|ppweb\/libs\/webpack)/
             },
             // CSS,LESS打包进JS
             //{ test: /\.css$/, loader: 'style-loader!css-loader' },
