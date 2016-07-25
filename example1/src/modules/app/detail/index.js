@@ -2,11 +2,11 @@
  * Created by Chenjr on 2015/7/7.
  */
 
-require('./detail.less');
+require('./index.less');
 
 var $ = require('lib2/zepto/main'),
-    loading = require('../../components/loading/loading'),
-    header2 = require('../../components/header2/header2');
+    loading = require('../../components/loading/index'),
+    header2 = require('../../components/header2/index');
 
 loading.start();
 header2.render(document.getElementById('headerWrap'));

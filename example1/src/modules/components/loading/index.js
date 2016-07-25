@@ -3,7 +3,7 @@
  * Created by Chenjr on 2015/7/7.
  */
 
-require('./loading.less');
+require('./index.less');
 
 module.exports = (function() {
     var _e = {},

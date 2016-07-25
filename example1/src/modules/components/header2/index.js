@@ -2,7 +2,7 @@
  * Created by Chenjr on 2015/7/7.
  */
 
-require('./header2.less');
+require('./index.less');
 
 var $ = require('lib2/zepto/main'),
     artT = require('lib2/artTemplate/artTemplate');
@@ -16,7 +16,7 @@ module.exports = (function() {
      * @param opt.css - 自定义头部样式
      */
     _e.render = function(dom, opt) {
-        var render = artT.compile(require('./header2.tpl')());
+        var render = artT.compile(require('./index.tpl')());
 
         dom.innerHTML = render({opt: opt});
 

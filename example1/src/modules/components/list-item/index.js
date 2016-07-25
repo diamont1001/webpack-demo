@@ -3,7 +3,7 @@
  * Created by Administrator on 2015/7/7.
  */
 
-require('./list-item.less');
+require('./index.less');
 
 var $ = require('lib2/zepto/main'),
     artT = require('lib2/artTemplate/artTemplate');
@@ -18,7 +18,7 @@ module.exports = (function() {
      */
     _e.render = function(dom, data) {
         var $handle = $(dom),
-            render = artT.compile(require('./list-item.tpl')());
+            render = artT.compile(require('./index.tpl')());
 
         $handle.append(render({data: data}));
     };

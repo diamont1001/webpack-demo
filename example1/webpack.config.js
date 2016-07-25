@@ -6,8 +6,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin'); // Html文件处理
 
 module.exports = {
     entry: {
-        List: './src/modules/app/list/list.js',
-        Detail: './src/modules/app/detail/detail.js'
+        List: './src/modules/app/list/index.js',
+        Detail: './src/modules/app/detail/index.js'
     },
     output: {
         path: './release', // This is where images & js will go
@@ -36,8 +36,8 @@ module.exports = {
          * excludeChunks - 排除指定的文件（打包后输出的JS/CSS），比如：excludeChunks: ['dev-helper']
          * hash
          */
-        new HtmlWebpackPlugin({filename: 'views/list.html', template: 'src/modules/app/list/list.html', chunks: ['common', 'List'], hash: true}),
-        new HtmlWebpackPlugin({filename: 'views/detail.html', template: 'src/modules/app/detail/detail.html', chunks: ['common', 'Detail'], hash: true})
+        new HtmlWebpackPlugin({filename: 'views/list.html', template: 'src/modules/app/list/index.html', chunks: ['common', 'List'], hash: true}),
+        new HtmlWebpackPlugin({filename: 'views/detail.html', template: 'src/modules/app/detail/index.html', chunks: ['common', 'Detail'], hash: true})
     ],
 
     module: {
