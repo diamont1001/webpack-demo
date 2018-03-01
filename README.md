@@ -38,15 +38,15 @@ webpack构建前端项目，包含demo与目录规范
 
 # 编译
 
-```
-clone https://github.com/diamont1001/webpack-demo.git
-cd webpack-demo/example1
-npm i
+```bash
+$ clone https://github.com/diamont1001/webpack-demo.git
+$ cd webpack-demo/example1
+$ npm i
 
 # for dev version
-npm run dev
+$ npm run dev
 # for release version
-npm run prod
+$ npm run prod
 ```
 
 最后生成的发布代码在 `release/` 目录下。
