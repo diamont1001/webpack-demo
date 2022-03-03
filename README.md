@@ -39,7 +39,7 @@ webpack构建前端项目，包含demo与目录规范
 # 编译
 
 ```bash
-$ clone https://github.com/diamont1001/webpack-demo.git
+$ git clone https://github.com/diamont1001/webpack-demo.git
 $ cd webpack-demo/example1
 $ npm i
 
